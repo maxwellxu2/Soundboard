@@ -12,12 +12,65 @@ date_default_timezone_set('America/Chicago');
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script>
-  var snd = new Audio("Pizza Time.mp3");
-  var cantina = new Audio("CantinaBand3.wav");
+  var time;
+  var x = setInterval(function() {
+    var now;
+    var distance = now - time;
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("timerdisplay").innerHTML = seconds + "s ";
+  }, 10);
+  var recording;
+  var snd = new Audio("Sounds/Pizza Time.mp3");
+  var cantina = new Audio("Sounds/CantinaBand.mp3");
+  var starwars = new Audio("Sounds/StarWars.mp3");
+  var taunt = new Audio("Sounds/taunt.mp3");
+  var waterfall = new Audio("Sounds/Waterfall.mp3");
+  var cheering = new Audio("Sounds/Cheering.mp3");
   function playCantinaSound()
   {
-    cantina.play();
+    if(cantina.duration > 0 && !cantina.paused) {
+      cantina.currentTime = 0;
+    }
+    else {
+      cantina.play();
+    }
   }
+  function playStarWarsSound()
+  {
+    starwars.play();
+  }
+  function playTauntSound()
+  {
+    taunt.play();
+  }
+  function playWaterfallSound()
+  {
+    waterfall.play();
+  }
+  function playCheeringSound()
+  {
+    cheering.play();
+  }
+  document.onkeydown = function (e) {
+    var keyCode = e.keyCode;
+    if(keyCode == 81) {
+        document.getElementById("Cantina").click();
+        document.getElementById("Cantina").setAttribute("data-toggle", "button");
+    }
+    if(keyCode == 87) {
+      document.getElementById("StarWars").click();
+      document.getElementById("StarWars").setAttribute("data-toggle", "button");
+    }
+    if(keyCode == 16) {
+      time = date.getTime();
+      if(!recording) {
+      recording = true;
+    }
+      else {
+        recording = false;
+      }
+    }
+}
   </script>
   <title>Bootstrap Assignment</title>
 </head>
@@ -62,7 +115,80 @@ date_default_timezone_set('America/Chicago');
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playCantinaSound()" type="button" class="btn btn-primary btn-lg btn-block">Cantina</button>
+        <button onclick="playCantinaSound()" id="Cantina" type="button" class="btn btn-primary btn-lg btn-block">Cantina</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playStarWarsSound()" id="StarWars" type="button" class="btn btn-primary btn-lg btn-block">Star Wars</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playTauntSound()" type="button" class="btn btn-primary btn-lg btn-block">Taunt</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playWaterfallSound()" type="button" class="btn btn-primary btn-lg btn-block">Waterfall</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playCheeringSound()" type="button" class="btn btn-primary btn-lg btn-block">Cheering</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-group">
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
@@ -203,79 +329,9 @@ date_default_timezone_set('America/Chicago');
     </div>
 
   </div>
-
-  <div class="card-group">
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-  </div>
+  
+  <br>
+  <p id="timerdisplay"></p>
 
 
 
