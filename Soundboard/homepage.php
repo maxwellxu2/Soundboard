@@ -12,24 +12,42 @@ date_default_timezone_set('America/Chicago');
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script>
-  var time;
+  var recordingtime;
   var recording = false;
-  var timesnotup = true;
+  var playingtime;
+  var playing = false;
   var x = setInterval(function() {
     var now = Date.now();
-    var distance = now - time;
+    var distance = now - recordingtime;
     var seconds = Math.floor((distance % (1000 * 60)) / 10);
-    if(timesnotup && recording) {
-      document.getElementById("timerdisplay").innerHTML = seconds + "/500 ms ";
+    if(recording) {
+      document.getElementById("timerdisplay").innerHTML = Math.floor(seconds / 100) + "." + Math.floor(seconds % 100 / 10) + Math.floor(seconds % 10) + "/5.00 s ";
     }
     if(seconds == 500) {
-      timesnotup = false;
       recording = false;
     }
-  }, 10);
+  }, 1);
+  var y = setInterval(function() {
+    var now = Date.now();
+    var distance = now - playingtime;
+    var seconds = Math.floor((distance % (1000 * 60)) / 10);
+    if(playing) {
+      document.getElementById("playingtimer").innerHTML = Math.floor(seconds / 100) + "." + Math.floor(seconds % 100 / 10) + Math.floor(seconds % 10) + "/5.00 s ";
+    }
+    if(seconds == 500) {
+      playing = false;
+    }
+    if(playing && audioMap.get(seconds) != null) {
+      if(audioMap.get(seconds).duration > 0 && !audioMap.get(seconds).paused) {
+        audioMap.get(seconds).currentTime = 0;
+      }
+      else {
+      audioMap.get(seconds).play();
+    }
+    }
+  }, 1);
   var audioMap = new Map();
 
-  var snd = new Audio("Sounds/Pizza Time.mp3");
   var cantina = new Audio("Sounds/CantinaBand.mp3");
   var starwars = new Audio("Sounds/StarWars.mp3");
   var taunt = new Audio("Sounds/taunt.mp3");
@@ -46,8 +64,8 @@ date_default_timezone_set('America/Chicago');
       sound.play();
     }
     if(recording) {
-    audioMap.set(Date.now() - time, sound);
-    console.log(audioMap);
+    audioMap.set(Math.floor((Date.now() - recordingtime)/10), sound);
+    console.log(Math.floor((Date.now() - recordingtime)/10));
   }
   }
 
@@ -62,18 +80,22 @@ date_default_timezone_set('America/Chicago');
       }
     }
     if(keyCode == 16) {
-      time = Date.now();
+      recordingtime = Date.now();
       if(!recording) {
       recording = true;
-      timesnotup = true;
     }
       else {
         recording = false;
-        timesnotup = false;
       }
     }
     if(keyCode == 32) {
-      
+      playingtime = Date.now();
+      if(!playing) {
+      playing = true;
+    }
+      else {
+        playing = false;
+      }
     }
 }
   </script>
@@ -336,7 +358,9 @@ date_default_timezone_set('America/Chicago');
   </div>
 
   <br>
-  <p id="timerdisplay"></p>
+  Recording <p id="timerdisplay">Press Shift</p>
+  <br>
+  Playing <p id="playingtimer">Press Space</p>
 
 
 
