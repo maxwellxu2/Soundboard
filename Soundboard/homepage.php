@@ -13,19 +13,29 @@ date_default_timezone_set('America/Chicago');
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script>
   var time;
+  var recording = false;
+  var timesnotup = true;
   var x = setInterval(function() {
-    var now;
+    var now = Date.now();
     var distance = now - time;
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("timerdisplay").innerHTML = seconds + "s ";
+    var seconds = Math.floor((distance % (1000 * 60)) / 10);
+    if(timesnotup && recording) {
+      document.getElementById("timerdisplay").innerHTML = seconds + "/500 ms ";
+    }
+    if(seconds == 500) {
+      timesnotup = false;
+      recording = false;
+    }
   }, 10);
-  var recording;
+  var audioMap = new Map();
+
   var snd = new Audio("Sounds/Pizza Time.mp3");
   var cantina = new Audio("Sounds/CantinaBand.mp3");
   var starwars = new Audio("Sounds/StarWars.mp3");
   var taunt = new Audio("Sounds/taunt.mp3");
   var waterfall = new Audio("Sounds/Waterfall.mp3");
   var cheering = new Audio("Sounds/Cheering.mp3");
+
   function playCantinaSound()
   {
     if(cantina.duration > 0 && !cantina.paused) {
@@ -34,6 +44,8 @@ date_default_timezone_set('America/Chicago');
     else {
       cantina.play();
     }
+    audioMap.set(Date.now(), cantina);
+    console.log(audioMap);
   }
   function playStarWarsSound()
   {
@@ -62,12 +74,14 @@ date_default_timezone_set('America/Chicago');
       document.getElementById("StarWars").setAttribute("data-toggle", "button");
     }
     if(keyCode == 16) {
-      time = date.getTime();
+      time = Date.now();
       if(!recording) {
       recording = true;
+      timesnotup = true;
     }
       else {
         recording = false;
+        timesnotup = false;
       }
     }
 }
@@ -329,7 +343,7 @@ date_default_timezone_set('America/Chicago');
     </div>
 
   </div>
-  
+
   <br>
   <p id="timerdisplay"></p>
 
