@@ -35,43 +35,31 @@ date_default_timezone_set('America/Chicago');
   var taunt = new Audio("Sounds/taunt.mp3");
   var waterfall = new Audio("Sounds/Waterfall.mp3");
   var cheering = new Audio("Sounds/Cheering.mp3");
+  var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-  function playCantinaSound()
+  function playSound(sound)
   {
-    if(cantina.duration > 0 && !cantina.paused) {
-      cantina.currentTime = 0;
+    if(sound.duration > 0 && !sound.paused) {
+      sound.currentTime = 0;
     }
     else {
-      cantina.play();
+      sound.play();
     }
-    audioMap.set(Date.now(), cantina);
+    if(recording) {
+    audioMap.set(Date.now() - time, sound);
     console.log(audioMap);
   }
-  function playStarWarsSound()
-  {
-    starwars.play();
   }
-  function playTauntSound()
-  {
-    taunt.play();
-  }
-  function playWaterfallSound()
-  {
-    waterfall.play();
-  }
-  function playCheeringSound()
-  {
-    cheering.play();
-  }
+
   document.onkeydown = function (e) {
     var keyCode = e.keyCode;
-    if(keyCode == 81) {
-        document.getElementById("Cantina").click();
-        document.getElementById("Cantina").setAttribute("data-toggle", "button");
-    }
-    if(keyCode == 87) {
-      document.getElementById("StarWars").click();
-      document.getElementById("StarWars").setAttribute("data-toggle", "button");
+    var kNum=e.keyCode.toString();
+    for(var i=0; i<25;i++) {
+      iKeyCode=i+65;
+      if(keyCode == iKeyCode) {
+        document.getElementById(kNum).click();
+        document.getElementById(kNum).setAttribute("data-toggle", "button");
+      }
     }
     if(keyCode == 16) {
       time = Date.now();
@@ -83,6 +71,9 @@ date_default_timezone_set('America/Chicago');
         recording = false;
         timesnotup = false;
       }
+    }
+    if(keyCode == 32) {
+      
     }
 }
   </script>
@@ -129,143 +120,70 @@ date_default_timezone_set('America/Chicago');
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playCantinaSound()" id="Cantina" type="button" class="btn btn-primary btn-lg btn-block">Cantina</button>
+        <button onclick="playSound(cantina)" id="81" type="button" class="btn btn-primary btn-lg btn-block">Cantina</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playStarWarsSound()" id="StarWars" type="button" class="btn btn-primary btn-lg btn-block">Star Wars</button>
+        <button onclick="playSound(starwars)" id="87" type="button" class="btn btn-primary btn-lg btn-block">Star Wars</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playTauntSound()" type="button" class="btn btn-primary btn-lg btn-block">Taunt</button>
+        <button onclick="playSound(taunt)" id="69" type="button" class="btn btn-primary btn-lg btn-block">Taunt</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playWaterfallSound()" type="button" class="btn btn-primary btn-lg btn-block">Waterfall</button>
+        <button onclick="playSound(waterfall)" id="82" type="button" class="btn btn-primary btn-lg btn-block">Waterfall</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playCheeringSound()" type="button" class="btn btn-primary btn-lg btn-block">Cheering</button>
+        <button onclick="playSound(cheering)" id="84" type="button" class="btn btn-primary btn-lg btn-block">Cheering</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="card-group">
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
@@ -275,70 +193,143 @@ date_default_timezone_set('America/Chicago');
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-group">
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h5 class="card-title"></h5>
+      <div class="card-body">
+        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
