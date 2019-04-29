@@ -12,30 +12,48 @@ date_default_timezone_set('America/Chicago');
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <script>
-  var time;
+  var recordingtime;
+  var recording = false;
+  var playingtime;
+  var playing = false;
   var x = setInterval(function() {
-    var now;
-    var distance = now - time;
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("timerdisplay").innerHTML = seconds + "s ";
-  }, 10);
-  var recording;
-  var snd = new Audio("Sounds/Pizza Time.mp3");
+    var now = Date.now();
+    var distance = now - recordingtime;
+    var seconds = Math.floor((distance % (1000 * 60)) / 10);
+    if(recording) {
+      document.getElementById("timerdisplay").innerHTML = Math.floor(seconds / 100) + "." + Math.floor(seconds % 100 / 10) + Math.floor(seconds % 10) + "/5.00 s ";
+    }
+    if(seconds == 500) {
+      recording = false;
+    }
+  }, 1);
+  var y = setInterval(function() {
+    var now = Date.now();
+    var distance = now - playingtime;
+    var seconds = Math.floor((distance % (1000 * 60)) / 10);
+    if(playing) {
+      document.getElementById("playingtimer").innerHTML = Math.floor(seconds / 100) + "." + Math.floor(seconds % 100 / 10) + Math.floor(seconds % 10) + "/5.00 s ";
+    }
+    if(seconds == 500) {
+      playing = false;
+    }
+    if(playing && audioMap.get(seconds) != null) {
+      if(audioMap.get(seconds).duration > 0 && !audioMap.get(seconds).paused) {
+        audioMap.get(seconds).currentTime = 0;
+      }
+      else {
+      audioMap.get(seconds).play();
+    }
+    }
+  }, 1);
+  var audioMap = new Map();
+
   var cantina = new Audio("Sounds/CantinaBand.mp3");
   var starwars = new Audio("Sounds/StarWars.mp3");
   var taunt = new Audio("Sounds/taunt.mp3");
   var waterfall = new Audio("Sounds/Waterfall.mp3");
   var cheering = new Audio("Sounds/Cheering.mp3");
   var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-  function playCantinaSound()
-  {
-    if(cantina.duration > 0 && !cantina.paused) {
-      cantina.currentTime = 0;
-    }
-    else {
-      cantina.play();
-    }
-  }
   function playSound(sound)
   {
     if(sound.duration > 0 && !sound.paused) {
@@ -44,46 +62,24 @@ date_default_timezone_set('America/Chicago');
     else {
       sound.play();
     }
+    if(recording) {
+    audioMap.set(Math.floor((Date.now() - recordingtime)/10), sound);
+    //console.log(Math.floor((Date.now() - recordingtime)/10));
   }
-  function playStarWarsSound()
-  {
-    starwars.play();
   }
-  function playTauntSound()
-  {
-    taunt.play();
-  }
-  function playWaterfallSound()
-  {
-    waterfall.play();
-  }
-  function playCheeringSound()
-  {
-    cheering.play();
-  }
+
   document.onkeydown = function (e) {
     var keyCode = e.keyCode;
-    /*
-    if(keyCode == 81) {
-        document.getElementById("Cantina").click();
-        document.getElementById("Cantina").setAttribute("data-toggle", "button");
-    }
-    if(keyCode == 87) {
-      document.getElementById("StarWars").click();
-      document.getElementById("StarWars").setAttribute("data-toggle", "button");
-    }*/
     var kNum=e.keyCode.toString();
-
     for(var i=0; i<25;i++) {
       iKeyCode=i+65;
-      console.log(iKeyCode);
       if(keyCode == iKeyCode) {
         document.getElementById(kNum).click();
         document.getElementById(kNum).setAttribute("data-toggle", "button");
       }
     }
-      if(keyCode == 16) {
-      time = date.getTime();
+    if(keyCode == 16) {
+      recordingtime = Date.now();
       if(!recording) {
       recording = true;
     }
@@ -91,7 +87,18 @@ date_default_timezone_set('America/Chicago');
         recording = false;
       }
     }
+    if(keyCode == 32) {
+      playingtime = Date.now();
+      if(!playing) {
+      playing = true;
+    }
+      else {
+        playing = false;
+      }
+    }
+
 }
+
   </script>
   <title>Bootstrap Assignment</title>
 </head>
@@ -352,7 +359,9 @@ date_default_timezone_set('America/Chicago');
   </div>
 
   <br>
-  <p id="timerdisplay"></p>
+  Recording <p id="timerdisplay">Press Shift</p>
+  <br>
+  Playing <p id="playingtimer">Press Space</p>
 
 
 
