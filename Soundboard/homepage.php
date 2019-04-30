@@ -53,6 +53,11 @@ date_default_timezone_set('America/Chicago');
   var taunt = new Audio("Sounds/taunt.mp3");
   var waterfall = new Audio("Sounds/Waterfall.mp3");
   var cheering = new Audio("Sounds/Cheering.mp3");
+  var ankithhey = new Audio("Sounds/ankithhey.mp3");
+  var caleboh = new Audio("Sounds/caleboh.mp3");
+  var laugh = new Audio("Sounds/laugh.mp3");
+  var sagedeun = new Audio("Sounds/sagedeun.mp3");
+  var tandoaleueleu = new Audio("Sounds/tandoaleueleu.mp3");
   var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
   function playSound(sound)
@@ -177,35 +182,35 @@ date_default_timezone_set('America/Chicago');
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(ankithhey)" id="89" class="btn btn-primary btn-lg btn-block">ankithhey</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(caleboh)" id="85" class="btn btn-primary btn-lg btn-block">caleboh</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(laugh)" id="73" class="btn btn-primary btn-lg btn-block">laugh</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(tandoaleueleu)" id="79" class="btn btn-primary btn-lg btn-block">tandoaleueleu</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="80" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
