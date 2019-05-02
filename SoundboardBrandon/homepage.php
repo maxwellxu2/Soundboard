@@ -47,13 +47,26 @@ date_default_timezone_set('America/Chicago');
     }
   }, 1);
   var audioMap = new Map();
-
-  var cantina = new Audio("Sounds/CantinaBand.mp3");
+  var sounds= "Sounds";
+  var defauld= "Sounds";
+  var pianoSounds= "Piano Sounds";
+  var cantina = new Audio(sounds+"/CantinaBand.mp3");
   var starwars = new Audio("Sounds/StarWars.mp3");
   var taunt = new Audio("Sounds/taunt.mp3");
   var waterfall = new Audio("Sounds/Waterfall.mp3");
   var cheering = new Audio("Sounds/Cheering.mp3");
+  var ankithhey = new Audio("Sounds/ankithhey.mp3");
+  var caleboh = new Audio("Sounds/caleboh.mp3");
+  var laugh = new Audio("Sounds/laugh.mp3");
+  var sagedeun = new Audio("Sounds/sagedeun.mp3");
+  var tandoaleueleu = new Audio("Sounds/tandoaleueleu.mp3");
   var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+  function useSounds(soundFont)
+  {
+    sounds=soundFont;
+  }
+
   function playSound(sound)
   {
     if(sound.duration > 0 && !sound.paused) {
@@ -64,7 +77,7 @@ date_default_timezone_set('America/Chicago');
     }
     if(recording) {
     audioMap.set(Math.floor((Date.now() - recordingtime)/10), sound);
-    //console.log(Math.floor((Date.now() - recordingtime)/10));
+    console.log(Math.floor((Date.now() - recordingtime)/10));
   }
   }
 
@@ -96,9 +109,7 @@ date_default_timezone_set('America/Chicago');
         playing = false;
       }
     }
-
 }
-
   </script>
   <title>Bootstrap Assignment</title>
 </head>
@@ -136,6 +147,16 @@ date_default_timezone_set('America/Chicago');
       }
       ?>
       <hr class="my-4">
+      <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sound Fonts
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <button class="dropdown-item" type="button" onclick="useSounds(default)">Default</a>
+    <button class="dropdown-item" type="button" onclick="useSounds(pianoSounds)">Piano</a>
+    <button class="dropdown-item" type="button" onclick="useSounds()">Something else here</a>
+  </div>
+</div>
     </div>
   </div>
 
@@ -178,35 +199,35 @@ date_default_timezone_set('America/Chicago');
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(ankithhey)" id="89" class="btn btn-primary btn-lg btn-block">ankithhey</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(caleboh)" id="85" class="btn btn-primary btn-lg btn-block">caleboh</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(laugh)" id="73" class="btn btn-primary btn-lg btn-block">laugh</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(tandoaleueleu)" id="79" class="btn btn-primary btn-lg btn-block">tandoaleueleu</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="80" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
