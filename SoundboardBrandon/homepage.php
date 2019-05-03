@@ -50,21 +50,73 @@ date_default_timezone_set('America/Chicago');
   var sounds= "Sounds";
   var defauld= "Sounds";
   var pianoSounds= "Piano Sounds";
-  var cantina = new Audio(sounds+"/CantinaBand.mp3");
-  var starwars = new Audio("Sounds/StarWars.mp3");
-  var taunt = new Audio("Sounds/taunt.mp3");
-  var waterfall = new Audio("Sounds/Waterfall.mp3");
-  var cheering = new Audio("Sounds/Cheering.mp3");
-  var ankithhey = new Audio("Sounds/ankithhey.mp3");
-  var caleboh = new Audio("Sounds/caleboh.mp3");
-  var laugh = new Audio("Sounds/laugh.mp3");
-  var sagedeun = new Audio("Sounds/sagedeun.mp3");
-  var tandoaleueleu = new Audio("Sounds/tandoaleueleu.mp3");
+  var cantina //= new Audio(sounds+"/CantinaBand.mp3");
+  var starwars// = new Audio("Sounds/StarWars.mp3");
+  var taunt //= new Audio("Sounds/taunt.mp3");
+  var waterfall //= new Audio("Sounds/Waterfall.mp3");
+  var cheering //= new Audio("Sounds/Cheering.mp3");
+  var ankithhey// = new Audio("Sounds/ankithhey.mp3");
+  var caleboh// = new Audio("Sounds/caleboh.mp3");
+  var laugh //= new Audio("Sounds/laugh.mp3");
+  var sagedeun //= new Audio("Sounds/sagedeun.mp3");
+  var tandoaleueleu //= new Audio("Sounds/tandoaleueleu.mp3");
+  var sound80
+  var sound65
+  var sound83
+  var sound68
+  var sound70
+  var sound71
+  var sound72
+  var sound74
+  var sound75
+  var sound76
   var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var bbab = document.getElementById("81");
 
   function useSounds(soundFont)
   {
-    sounds=soundFont;
+    var sounds=soundFont;
+    console.log(document.getElementById("81").value);
+    if(sounds==="Piano Sounds")
+    cantina = new Audio(sounds+"/81.mp3");
+    starwars = new Audio(sounds+"/87.mp3");
+    taunt = new Audio(sounds+"/69.mp3");
+    waterfall = new Audio(sounds+"/82.mp3");
+    cheering = new Audio(sounds+"/84.mp3");
+    ankithhey = new Audio(sounds+"/89.mp3");
+    caleboh = new Audio(sounds+"/85.mp3");
+    laugh = new Audio(sounds+"/73.mp3");
+    sagedeun = new Audio(sounds+"/79.mp3");
+    sound80 = new Audio(sounds+"/80.mp3");
+    sound65 = new Audio(sounds+"/65.mp3");
+    sound83 = new Audio(sounds+"/83.mp3");
+    sound68 = new Audio(sounds+"/68.mp3");
+    sound70 = new Audio(sounds+"/70.mp3");
+    sound71 = new Audio(sounds+"/71.mp3");
+    sound72 = new Audio(sounds+"/72.mp3");
+    sound74 = new Audio(sounds+"/74.mp3");
+    sound75 = new Audio(sounds+"/75.mp3");
+    sound76 = new Audio(sounds+"/76.mp3");
+    //tandoaleueleu = new Audio(sounds+"/tandoaleueleu.mp3");
+    document.getElementById("81").textContent=" ";
+    document.getElementById("87").textContent="C#";
+    document.getElementById("69").textContent="Eb";
+    document.getElementById("82").textContent=" ";
+    document.getElementById("84").textContent="F#";
+    document.getElementById("89").textContent="G#";
+    document.getElementById("85").textContent="Bb";
+    document.getElementById("73").textContent="B#";
+    document.getElementById("79").textContent=" ";
+    document.getElementById("80").textContent=" ";
+    document.getElementById("65").textContent="C";
+    document.getElementById("83").textContent="D";
+    document.getElementById("68").textContent="E";
+    document.getElementById("70").textContent="F";
+    document.getElementById("71").textContent="G";
+    document.getElementById("72").textContent="A";
+    document.getElementById("74").textContent="B";
+    document.getElementById("75").textContent="C";
+
   }
 
   function playSound(sound)
@@ -152,11 +204,12 @@ date_default_timezone_set('America/Chicago');
     Sound Fonts
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <button class="dropdown-item" type="button" onclick="useSounds(default)">Default</a>
-    <button class="dropdown-item" type="button" onclick="useSounds(pianoSounds)">Piano</a>
-    <button class="dropdown-item" type="button" onclick="useSounds()">Something else here</a>
+    <button class="dropdown-item" type="button" onclick="useSounds(defauld)">Default</button>
+    <button class="dropdown-item" type="button" onclick="useSounds(pianoSounds)">Piano</button>
+    <button class="dropdown-item" type="button" onclick="useSounds()">Something else here</button>
   </div>
 </div>
+<button type="button" class="btn btn-primary" onclick="useSounds(pianoSounds)">Piano</button>
     </div>
   </div>
 
@@ -227,7 +280,7 @@ date_default_timezone_set('America/Chicago');
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="80" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(sound80)" id="80" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
@@ -237,146 +290,116 @@ date_default_timezone_set('America/Chicago');
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(sound65)" id="65" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(sound83)" id="83" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(sound68)" id="68" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(sound70)" id="70" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(sound71)" id="71" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(sound72)" id="72" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(sound74)" id="74" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound(sound75)" id="75" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="76" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
   </div>
 
   <div class="card-group">
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="90" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="88" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="67" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="86" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="66" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="78" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
 
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
+        <button onclick="playSound()" id="77" class="btn btn-primary btn-lg btn-block">Sound</button>
       </div>
     </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h5 class="card-title"></h5>
-      <div class="card-body">
-        <button onclick="playSound()" id="" class="btn btn-primary btn-lg btn-block">Sound</button>
-      </div>
-    </div>
-
   </div>
 
   <br>
