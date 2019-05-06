@@ -25,6 +25,12 @@ date_default_timezone_set('America/Chicago');
     }
     if(seconds == 500) {
       recording = false;
+      document.cookie = "audio=";
+      document.getElementById("audioMap").innerHTML = "";
+      for (var key of audioMap2.keys()) {
+        document.cookie = document.cookie + key + " " + audioMap2.get(key);
+        document.getElementById("audioMap").innerHTML = document.getElementById("audioMap").innerHTML + key + " " + audioMap2.get(key) + "/";
+}
     }
   }, 1);
   var y = setInterval(function() {
@@ -47,6 +53,8 @@ date_default_timezone_set('America/Chicago');
     }
   }, 1);
   var audioMap = new Map();
+  var audioMap2 = new Map();
+  var audioDatabase = new Map();
 
   var cantina = new Audio("Sounds/CantinaBand.mp3");
   var starwars = new Audio("Sounds/StarWars.mp3");
@@ -58,6 +66,17 @@ date_default_timezone_set('America/Chicago');
   var laugh = new Audio("Sounds/laugh.mp3");
   var sagedeun = new Audio("Sounds/sagedeun.mp3");
   var tandoaleueleu = new Audio("Sounds/tandoaleueleu.mp3");
+  audioDatabase.set(cantina, 81);
+  audioDatabase.set(starwars, 87);
+  audioDatabase.set(taunt, 69);
+  audioDatabase.set(waterfall, 82);
+  audioDatabase.set(cheering, 84);
+  audioDatabase.set(ankithhey, 89);
+  audioDatabase.set(caleboh, 85);
+  audioDatabase.set(laugh, 73);
+  audioDatabase.set(sagedeun, 79);
+  audioDatabase.set(tandoaleueleu, 80);
+
   var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
   function playSound(sound)
@@ -70,7 +89,7 @@ date_default_timezone_set('America/Chicago');
     }
     if(recording) {
     audioMap.set(Math.floor((Date.now() - recordingtime)/10), sound);
-    console.log(Math.floor((Date.now() - recordingtime)/10));
+    audioMap2.set(Math.floor((Date.now() - recordingtime)/10), audioDatabase.get(sound));
   }
   }
 
@@ -92,6 +111,11 @@ date_default_timezone_set('America/Chicago');
       else {
         recording = false;
       }
+      document.getElementById("audioMap").innerHTML = "";
+      for (var key of audioMap2.keys()) {
+        console.log(key + " -> " + audioMap2.get(key));
+          document.getElementById("audioMap").innerHTML = document.getElementById("audioMap").innerHTML + key + " " + audioMap2.get(key) + "/";
+}
     }
     if(keyCode == 32) {
       playingtime = Date.now();
@@ -103,6 +127,17 @@ date_default_timezone_set('America/Chicago');
       }
     }
 }
+<?php
+$(document).ready(function(){
+    $('.sendButton').attr('disabled',true);
+    $('#message').keyup(function(){
+        if($(this).val().length !=0)
+            $('.sendButton').attr('disabled', false);
+        else
+            $('.sendButton').attr('disabled',true);
+    })
+});
+?>
   </script>
   <title>Bootstrap Assignment</title>
 </head>
@@ -362,10 +397,38 @@ date_default_timezone_set('America/Chicago');
 
   </div>
 
+  <div class="container-fluid">
   <br>
   Recording <p id="timerdisplay">Press Shift</p>
   <br>
   Playing <p id="playingtimer">Press Space</p>
+</div>
+
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content">
+      <?php
+      if(isset($_SESSION['loggedin']))
+      {
+        echo '<form action="savinghandler.php" method="POST" role="form" class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">Title</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+    </div>
+    <div class="input-group">
+    <input id="audioMap" name="audioMap" readonly>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-outline-secondary" disabled>Save</button>
+</form>';
+      }
+      else
+      {
+        echo 'Log in to save';
+      }
+      ?>
+    </nav>
+  </div>
 
 
 
