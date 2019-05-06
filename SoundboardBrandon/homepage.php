@@ -76,47 +76,70 @@ date_default_timezone_set('America/Chicago');
   function useSounds(soundFont)
   {
     var sounds=soundFont;
-    console.log(document.getElementById("81").value);
-    if(sounds==="Piano Sounds")
-    cantina = new Audio(sounds+"/81.mp3");
-    starwars = new Audio(sounds+"/87.mp3");
-    taunt = new Audio(sounds+"/69.mp3");
-    waterfall = new Audio(sounds+"/82.mp3");
-    cheering = new Audio(sounds+"/84.mp3");
-    ankithhey = new Audio(sounds+"/89.mp3");
-    caleboh = new Audio(sounds+"/85.mp3");
-    laugh = new Audio(sounds+"/73.mp3");
-    sagedeun = new Audio(sounds+"/79.mp3");
-    sound80 = new Audio(sounds+"/80.mp3");
-    sound65 = new Audio(sounds+"/65.mp3");
-    sound83 = new Audio(sounds+"/83.mp3");
-    sound68 = new Audio(sounds+"/68.mp3");
-    sound70 = new Audio(sounds+"/70.mp3");
-    sound71 = new Audio(sounds+"/71.mp3");
-    sound72 = new Audio(sounds+"/72.mp3");
-    sound74 = new Audio(sounds+"/74.mp3");
-    sound75 = new Audio(sounds+"/75.mp3");
-    sound76 = new Audio(sounds+"/76.mp3");
-    //tandoaleueleu = new Audio(sounds+"/tandoaleueleu.mp3");
-    document.getElementById("81").textContent=" ";
-    document.getElementById("87").textContent="C#";
-    document.getElementById("69").textContent="Eb";
-    document.getElementById("82").textContent=" ";
-    document.getElementById("84").textContent="F#";
-    document.getElementById("89").textContent="G#";
-    document.getElementById("85").textContent="Bb";
-    document.getElementById("73").textContent="B#";
-    document.getElementById("79").textContent=" ";
-    document.getElementById("80").textContent=" ";
-    document.getElementById("65").textContent="C";
-    document.getElementById("83").textContent="D";
-    document.getElementById("68").textContent="E";
-    document.getElementById("70").textContent="F";
-    document.getElementById("71").textContent="G";
-    document.getElementById("72").textContent="A";
-    document.getElementById("74").textContent="B";
-    document.getElementById("75").textContent="C";
 
+    if(sounds==="Sounds")
+    {
+      cantina = new Audio(sounds+"/81.mp3");
+      starwars = new Audio(sounds+"/87.mp3");
+      taunt = new Audio(sounds+"/69.mp3");
+      waterfall = new Audio(sounds+"/82.mp3");
+      cheering = new Audio(sounds+"/84.mp3");
+      ankithhey = new Audio(sounds+"/89.mp3");
+      caleboh = new Audio(sounds+"/85.mp3");
+      laugh = new Audio(sounds+"/73.mp3");
+      sagedeun = new Audio(sounds+"/79.mp3");
+      sound80 = new Audio(sounds+"/80.mp3");
+      sound65 = new Audio(sounds+"/65.mp3");
+      sound83 = new Audio(sounds+"/83.mp3");
+      sound68 = new Audio(sounds+"/68.mp3");
+      sound70 = new Audio(sounds+"/70.mp3");
+      sound71 = new Audio(sounds+"/71.mp3");
+      sound72 = new Audio(sounds+"/72.mp3");
+      sound74 = new Audio(sounds+"/74.mp3");
+      sound75 = new Audio(sounds+"/75.mp3");
+      sound76 = new Audio(sounds+"/76.mp3");
+    }
+    if(sounds==="Piano Sounds")
+    {
+      cantina = new Audio(sounds+"/81.mp3");
+      starwars = new Audio(sounds+"/87.mp3");
+      taunt = new Audio(sounds+"/69.mp3");
+      waterfall = new Audio(sounds+"/82.mp3");
+      cheering = new Audio(sounds+"/84.mp3");
+      ankithhey = new Audio(sounds+"/89.mp3");
+      caleboh = new Audio(sounds+"/85.mp3");
+      laugh = new Audio(sounds+"/73.mp3");
+      sagedeun = new Audio(sounds+"/79.mp3");
+      sound80 = new Audio(sounds+"/80.mp3");
+      sound65 = new Audio(sounds+"/65.mp3");
+      sound83 = new Audio(sounds+"/83.mp3");
+      sound68 = new Audio(sounds+"/68.mp3");
+      sound70 = new Audio(sounds+"/70.mp3");
+      sound71 = new Audio(sounds+"/71.mp3");
+      sound72 = new Audio(sounds+"/72.mp3");
+      sound74 = new Audio(sounds+"/74.mp3");
+      sound75 = new Audio(sounds+"/75.mp3");
+      sound76 = new Audio(sounds+"/76.mp3");
+      //tandoaleueleu = new Audio(sounds+"/tandoaleueleu.mp3");
+      document.getElementById("81").textContent=" ";
+      document.getElementById("87").textContent="C#";
+      document.getElementById("69").textContent="Eb";
+      document.getElementById("82").textContent=" ";
+      document.getElementById("84").textContent="F#";
+      document.getElementById("89").textContent="G#";
+      document.getElementById("85").textContent="Bb";
+      document.getElementById("73").textContent=" ";
+      document.getElementById("79").textContent=" ";
+      document.getElementById("80").textContent=" ";
+      document.getElementById("65").textContent="C";
+      document.getElementById("83").textContent="D";
+      document.getElementById("68").textContent="E";
+      document.getElementById("70").textContent="F";
+      document.getElementById("71").textContent="G";
+      document.getElementById("72").textContent="A";
+      document.getElementById("74").textContent="B";
+      document.getElementById("75").textContent="C";
+    }
   }
 
   function playSound(sound)
@@ -162,6 +185,7 @@ date_default_timezone_set('America/Chicago');
       }
     }
 }
+useSounds(sounds);
   </script>
   <title>Bootstrap Assignment</title>
 </head>
