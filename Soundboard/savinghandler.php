@@ -20,18 +20,34 @@ $db = 'Soundboard';
     }
   }
 
+  $greatest = 0;
+  $result = $conn->query('SELECT userid, audioid FROM audio');
+  {
+    while($row = $result->fetch_assoc())
+    {
+      if($idholder == $row['userid'])
+      {
+        if($row['audioid'] > $greatest)
+        {
+          $greatest = $row['audioid'];
+        }
+      }
+    }
+  }
+  $greatest = $greatest + 1;
+
   $title = $_POST['title'];
-  $audioMap = $_POST['audioMap'];
-  $audioMapArray = split("/", $audioMap);
+  $audioMap = $_POST['audioMapStorage'];
+  $audioMapArray = explode("/", $audioMap);
   $actualAudioMap = [];
   foreach($audioMapArray as $value) {
-    list($key, $code) = split(" ", $value);
+    list($key, $code) = explode(" ", $value);
     $actualAudioMap[$key] = $code;
   }
 
   foreach($actualAudioMap as $key => $value) {
-      $stmt = $conn->prepare("INSERT INTO audio (userid, title, timeplayed, audiokeycode) VALUES (?, ?, ?, ?)");
-      $stmt->bind_param('isii', $_SESSION['loggedin'], $title, $key, $value);
+      $stmt = $conn->prepare("INSERT INTO audio (userid, audioid, title, timeplayed, audiokeycode) VALUES (?, ?, ?, ?, ?)");
+      $stmt->bind_param('iisii', $idholder, $greatest, $title, $key, $value);
       $stmt->execute();
   }
 
