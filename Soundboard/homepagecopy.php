@@ -17,7 +17,84 @@ date_default_timezone_set('America/Chicago');
   var audioMapSound = new Map();
   var audioMap2Piano = new Map();
   var audioMap2Sound = new Map();
+  thisIsGay(audioMap);
+function thisIsGay(audioMap, audioMap2, fun,sound=0)
+{
+  if(fun==='playSound')
+  {
+    function playSound(sound)
+    {
+      if(sound.duration > 0 && !sound.paused) {
+        sound.currentTime = 0;
+      }
+      else {
+        sound.play();
+      }
+      if(recording) {
+      audioMap.set(Math.floor((Date.now() - recordingtime)/10), sound);
+      audioMap2.set(Math.floor((Date.now() - recordingtime)/10), audioDatabase.get(sound));
+      }
+    }
+  }
+  if(fun==='fune')
+  {
+    document.onkeydown = function (e)
+    {
+      var keyCode = e.keyCode;
+      var kNum=e.keyCode.toString();
+      for(var i=0; i<25;i++) {
+        iKeyCode=i+65;
+        if(keyCode == iKeyCode) {
+          document.getElementById(kNum).click();
+          document.getElementById(kNum).setAttribute("data-toggle", "button");
+        }
+      }
+      if(keyCode == 16) {
+        recordingtime = Date.now();
+        if(!recording) {
+        recording = true;
+        }
+        else {
+          recording = false;
+        }
 
+        document.getElementById("audioMapStorage").setAttribute("value", "");
+        for (var key of audioMap2.keys()) {
+          //console.log(audioMap);
+            document.getElementById("audioMapStorage").setAttribute("value", document.getElementById("audioMapStorage").getAttribute("value") + key + " " + audioMap2.get(key) + "/");
+        }
+      }
+      if(keyCode == 32) {
+        playingtime = Date.now();
+        if(!playing) {
+        playing = true;
+        //console.log(audioMap2)
+        }
+        else {
+          playing = false;
+        }
+      }
+    }
+  }
+  function databaseToMap(dMap)
+  {
+    for(var i=0;i<500;i++)
+    {
+      var time = dMap.get(i);
+      if(typeof time != 'undefined')
+      {
+      audioMap.set(i, new Audio('Sounds/'+dMap.get(i).toString()+'.mp3'));
+        //console.log('Sounds/'+dMap.get(i).toString()+'.mp3');
+      }
+
+    }
+
+  }
+  function resetMap()
+  {
+    audioMap = new Map();
+  }
+}
   var recordingtime;
   var recording = false;
   var playingtime;
@@ -88,18 +165,6 @@ date_default_timezone_set('America/Chicago');
   var sound75
   var sound76
 
-  var pianoArray=new Map();
-  var soundArray=new Map();
-  function createArrays()
-  {
-    for(var i=0; i<25;i++)
-    {
-      var iCode=i+65;
-      soundArray.set(i,new Audio("Sounds/"+iCode.toString()+".mp3"));
-      pianoArray.set(i,new Audio("Piano Sounds/"+iCode.toString()+".mp3"));
-    }
-  }
-  createArrays();
 
   var alpha = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
@@ -138,15 +203,6 @@ date_default_timezone_set('America/Chicago');
       audioDatabase.set(sound73, 73);
       audioDatabase.set(sound79, 79);
       audioDatabase.set(sound80, 80);
-      audioDatabase.set(sound65, 65);
-      audioDatabase.set(sound83, 83);
-      audioDatabase.set(sound68, 68);
-      audioDatabase.set(sound70, 70);
-      audioDatabase.set(sound71, 71);
-      audioDatabase.set(sound72, 72);
-      audioDatabase.set(sound74, 74);
-      audioDatabase.set(sound75, 75);
-      audioDatabase.set(sound76, 76);
     }
     if(sounds==="Piano Sounds")
     {
@@ -198,121 +254,10 @@ date_default_timezone_set('America/Chicago');
       audioDatabase.set(sound73, 73);
       audioDatabase.set(sound79, 79);
       audioDatabase.set(sound80, 80);
-      audioDatabase.set(sound65, 65);
-      audioDatabase.set(sound83, 83);
-      audioDatabase.set(sound68, 68);
-      audioDatabase.set(sound70, 70);
-      audioDatabase.set(sound71, 71);
-      audioDatabase.set(sound72, 72);
-      audioDatabase.set(sound74, 74);
-      audioDatabase.set(sound75, 75);
-      audioDatabase.set(sound76, 76);
     }
   }
 
-  function playSound(sound)
-  {
-    if(sound.duration > 0 && !sound.paused) {
-      sound.currentTime = 0;
-    }
-    else {
-      sound.play();
-    }
-    if(recording) {
-    audioMap.set(Math.floor((Date.now() - recordingtime)/10), sound);
-    audioMap2.set(Math.floor((Date.now() - recordingtime)/10), audioDatabase.get(sound));
-  }
-  }
-  function isPiano()
-  {
-    var n = 0
-    //console.log(audioMap.get(89).getAttribute('src'));
-    document.getElementById("isPiano").setAttribute("value", "");
-    for(var i=0;i<500;i++)
-    {
-      for(var j=0; j<25;j++)
-      {
-        var jCode=j+65;
-        if(typeof audioMap.get(i) != 'undefined' && typeof soundArray.get(j)!='undefined')
-        {
-          if(audioMap.get(i).getAttribute('src') == soundArray.get(j).getAttribute('src'))
-          {
-            n = 0;
-          }
-          if(audioMap.get(i).getAttribute('src') == pianoArray.get(j).getAttribute('src'))
-          {
-            n = 1;
-          }
-          if(j==0)
-          {
-            document.getElementById("isPiano").setAttribute("value", document.getElementById("isPiano").getAttribute("value") + i + " " + n + "/");
-          }
-        }
-      }
-    }
-      /*document.getElementById("isPiano").setAttribute("value", "");
-      for (var key of isPianoMap.keys()) {
-        console.log(document.getElementById("isPiano").setAttribute("value", document.getElementById("isPiano").getAttribute("value") + key + " " + isPianoMap.get(key) + "/"));
-        document.getElementById("isPiano").setAttribute("value", document.getElementById("isPiano").getAttribute("value") + key + " " + isPianoMap.get(key) + "/");
-      }*/
-    }
-  document.onkeydown = function (e) {
-    var keyCode = e.keyCode;
-    var kNum = e.keyCode.toString();
-    for(var i = 0; i<25; i++) {
-      iKeyCode = i+65;
-      if(keyCode == iKeyCode) {
-        document.getElementById(kNum).click();
-        document.getElementById(kNum).setAttribute("data-toggle", "button");
-      }
-    }
-    if(keyCode == 16) {
-      recordingtime = Date.now();
-      if(!recording) {
-      recording = true;
-    }
-      else {
-        recording = false;
-      }
-      isPiano();
-      console.log(audioMap2);
-      document.getElementById("audioMapStorage").setAttribute("value", "");
-      for (var key of audioMap2.keys()) {
 
-          console.log(audioMap2.get(key));
-          document.getElementById("audioMapStorage").setAttribute("value", document.getElementById("audioMapStorage").getAttribute("value") + key + " " + audioMap2.get(key) + "/");
-}
-    }
-    if(keyCode == 32) {
-      playingtime = Date.now();
-      if(!playing) {
-      playing = true;
-
-    }
-      else {
-        playing = false;
-      }
-    }
-}
-
-function databaseToMap(dMap)
-{
-  for(var i=0;i<500;i++)
-  {
-    var time = dMap.get(i);
-    if(typeof time != 'undefined')
-    {
-    audioMap.set(i, new Audio('Sounds/'+dMap.get(i).toString()+'.mp3'));
-      //console.log('Sounds/'+dMap.get(i).toString()+'.mp3');
-    }
-
-  }
-
-}
-function resetMap()
-{
-  audioMap = new Map();
-}
 useSounds(sounds);
 //console.log(audioMap);
 </script>
@@ -385,7 +330,7 @@ $(document).ready(function(){
     <div class="card">
       <h5 class="card-title"></h5>
       <div class="card-body">
-        <button onclick="playSound(sound81)" id="81" type="button" class="btn btn-primary btn-lg btn-block">Cantina</button>
+        <button onclick="thisIsGay(audioMap, audioMap2, 'playSound',sound81)" id="81" type="button" class="btn btn-primary btn-lg btn-block">Cantina</button>
       </div>
     </div>
 
@@ -591,7 +536,6 @@ $(document).ready(function(){
     </div>
     <div class="input-group">
       <input type="text" class="form-control" id="audioMapStorage" value="" name="audioMapStorage" readonly>
-      <input type="int" class="form-control" id="isPiano" value="" name="isPiano" readonly>
     </div>
   </div>
   <button type="submit" class="btn btn-outline-secondary" >Save</button>
