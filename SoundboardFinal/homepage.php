@@ -1,4 +1,4 @@
-<?php session_start();
+<?php session_start(); //THIS IS THE FINISHED VERSION
 date_default_timezone_set('America/Chicago');
 ?>
 <!doctype html>
